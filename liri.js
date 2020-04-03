@@ -5,7 +5,7 @@ var fs = require("fs");
 var moment = require("moment");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
-
+var Table = require("cli-table3");
 
 var action = process.argv[2];
 //var userInput = process.argv[3];
@@ -49,6 +49,7 @@ function concertSearch() {
             var country = response.data[0].venue.country;
             var date = moment(response.data[0].datetime).format("MMMM DD, YYYY");
 
+            /*
             //--------------------------- OUTPUT MESSAGE ---------------------------//
             console.log("----------------------------------------------------------");
             console.log("Here is the information for " + artist + "'s next concert:");
@@ -56,6 +57,18 @@ function concertSearch() {
             console.log("Venue: " + venue);
             console.log("Location: " + city + ", " + country);
             console.log("----------------------------------------------------------");
+            */
+
+            var table = new Table();
+
+            table.push(
+                [{colSpan:2,content:"Here's some info on " + artist + "'s next concert:"}],
+                { Date: date },
+                { Venue: venue },
+                { Location: city + ", " + country }
+            );
+
+            console.log(table.toString());
         })
         .catch(function (error) {
             console.log(error);
@@ -63,10 +76,12 @@ function concertSearch() {
 }
 
 function spotifySearch() {
-
     // Default Song
-    if (userInput === "") {var song = "The Sign";}
-    else {var song = userInput;}
+    if (userInput === "") {
+        var song = "The Sign";
+    } else {
+        var song = userInput;
+    }
 
     //var song = userInput;
 
@@ -106,8 +121,11 @@ function spotifySearch() {
 function movieSearch() {
     // Default Movie
     console.log(userInput);
-    if (userInput === "") {var movie = "mr+nobody";}
-    else {var movie = userInput;}
+    if (userInput === "") {
+        var movie = "mr+nobody";
+    } else {
+        var movie = userInput;
+    }
     console.log(userInput);
 
     //var movie = userInput;
@@ -173,8 +191,8 @@ function movieSearch() {
         });
 }
 
-function doIt(){
-    fs.readFile('./random.txt', 'utf8', (err, data) => {
+function doIt() {
+    fs.readFile("./random.txt", "utf8", (err, data) => {
         if (err) throw err;
         //console.log(data);
         //console.log(data.split(","));
@@ -188,8 +206,5 @@ function doIt(){
 
         userInput = data.split(",")[1];
         spotifySearch(userInput);
-
-
-        
-      });
+    });
 }
