@@ -59,7 +59,7 @@ function concertSearch() {
         });
 }
 
-function spotifySearch() {
+function spotifySearch(value) {
     var song = value;
 
     spotify.search({ type: "track", query: song }, function (err, data) {
@@ -144,7 +144,13 @@ function movieSearch() {
 function doIt(){
     fs.readFile('./random.txt', 'utf8', (err, data) => {
         if (err) throw err;
-        console.log(data);
-        console.log(data.split(","));
+        //console.log(data);
+        //console.log(data.split(","));
+        //input = data.split(",");
+        //var action = input[0];
+        //var value = input[1];
+        //console.log(value);
+        console.log(data.split(",")[1]);
+        spotifySearch (data.split(",")[1]);
       });
 }
