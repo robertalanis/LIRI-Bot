@@ -8,27 +8,27 @@ var spotify = new Spotify(keys.spotify);
 
 
 var action = process.argv[2];
-var value = process.argv[3];
+var userInput = process.argv[3];
 
 switch (action) {
     case "concert-this":
-        concertSearch(value);
+        concertSearch(userInput);
         break;
     case "spotify-this-song":
-        spotifySearch(value);
+        spotifySearch(userInput);
         break;
     case "movie-this":
-        movieSearch(value);
+        movieSearch(userInput);
         break;
     case "do-what-it-says":
-        doIt(value);
+        doIt(userInput);
         break;
     default:
         break;
 }
 
 function concertSearch() {
-    var artist = value;
+    var artist = userInput;
     axios
         .get(
             "https://rest.bandsintown.com/artists/" +
@@ -59,13 +59,13 @@ function concertSearch() {
         });
 }
 
-function spotifySearch(value) {
+function spotifySearch(userInput) {
 
     // Default Song
-    if (value === undefined) {var song = "The Sign";}
-    else {var song = value};
+    if (userInput === undefined) {var song = "The Sign";}
+    else {var song = userInput;}
 
-    //var song = value;
+    //var song = userInput;
 
     spotify.search({ type: "track", query: song }, function (err, data) {
         if (err) {
@@ -101,7 +101,12 @@ function spotifySearch(value) {
 }
 
 function movieSearch() {
-    var movie = value;
+    // Default Movie
+    if (userInput === undefined) {var movie = "mr+nobody";}
+    else {var movie = userInput;}
+
+    //var movie = userInput;
+
     axios
         .get("http://www.omdbapi.com/?apikey=trilogy&t=" + movie)
         .then(function (response) {
@@ -117,9 +122,26 @@ function movieSearch() {
             var director = response.data.Director;
             var actors = response.data.Actors;
             var plot = response.data.Plot;
-            var IMDBrating = response.data.Ratings[0].Value;
-            var rottenTomatoesRating = response.data.Ratings[1].Value;
-            var metacriticRating = response.data.Ratings[2].Value;
+            //console.log(response.data.Ratings);
+            var ratingsArray = response.data.Ratings;
+
+            // not all movies have ratings
+            // you get an error message if you process an empty array
+            // function below checks if array does not exist, is not an array, or is empty
+            if (!Array.isArray(ratingsArray) || !ratingsArray.length) {
+                var IMDBrating = "N/A";
+                var rottenTomatoesRating = "N/A";
+                var metacriticRating = "N/A";
+            }
+            //if the array is valid it will be processed
+            else {
+                var IMDBrating = response.data.Ratings[0].Value;
+                var rottenTomatoesRating = response.data.Ratings[1].Value;
+                var metacriticRating = response.data.Ratings[2].Value;
+            }
+            //var IMDBrating = response.data.Ratings[0].Value;
+            //var rottenTomatoesRating = response.data.Ratings[1].Value;
+            //var metacriticRating = response.data.Ratings[2].Value;
             var awards = response.data.Awards;
 
             //--------------------------- OUTPUT MESSAGE ---------------------------//
@@ -153,8 +175,8 @@ function doIt(){
         //console.log(data.split(","));
         //input = data.split(",");
         //var action = input[0];
-        //var value = input[1];
-        //console.log(value);
+        //var userInput = input[1];
+        //console.log(userInput);
         console.log(data.split(",")[1]);
         spotifySearch (data.split(",")[1]);
       });
