@@ -8,7 +8,10 @@ var spotify = new Spotify(keys.spotify);
 
 
 var action = process.argv[2];
-var userInput = process.argv[3];
+//var userInput = process.argv[3];
+
+var userInput = process.argv.slice(3).join(" ");
+//console.log(userInput);
 
 switch (action) {
     case "concert-this":
@@ -59,10 +62,10 @@ function concertSearch() {
         });
 }
 
-function spotifySearch(userInput) {
+function spotifySearch() {
 
     // Default Song
-    if (userInput === undefined) {var song = "The Sign";}
+    if (userInput === "") {var song = "The Sign";}
     else {var song = userInput;}
 
     //var song = userInput;
@@ -102,8 +105,10 @@ function spotifySearch(userInput) {
 
 function movieSearch() {
     // Default Movie
-    if (userInput === undefined) {var movie = "mr+nobody";}
+    console.log(userInput);
+    if (userInput === "") {var movie = "mr+nobody";}
     else {var movie = userInput;}
+    console.log(userInput);
 
     //var movie = userInput;
 
@@ -177,7 +182,14 @@ function doIt(){
         //var action = input[0];
         //var userInput = input[1];
         //console.log(userInput);
-        console.log(data.split(",")[1]);
-        spotifySearch (data.split(",")[1]);
+
+        //console.log(data.split(",")[1]);
+        //spotifySearch(data.split(",")[1]);
+
+        userInput = data.split(",")[1];
+        spotifySearch(userInput);
+
+
+        
       });
 }
