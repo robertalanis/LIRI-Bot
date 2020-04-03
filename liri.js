@@ -62,7 +62,7 @@ function concertSearch() {
             var table = new Table();
 
             table.push(
-                [{colSpan:2,content:"Here's some info on " + artist + "'s next concert:"}],
+                [{colSpan:2, hAlign:'center', content: artist + "'s next show:"}],
                 { Date: date },
                 { Venue: venue },
                 { Location: city + ", " + country }
