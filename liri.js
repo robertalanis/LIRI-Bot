@@ -60,7 +60,12 @@ function concertSearch() {
 }
 
 function spotifySearch(value) {
-    var song = value;
+
+    // Default Song
+    if (value === undefined) {var song = "The Sign";}
+    else {var song = value};
+
+    //var song = value;
 
     spotify.search({ type: "track", query: song }, function (err, data) {
         if (err) {
