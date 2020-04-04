@@ -202,6 +202,35 @@ function movieSearch() {
             console.log("Metacritic Rating: " + metacriticRating);
             console.log("Awards: " + awards);
             console.log("----------------------------------------------------------");
+
+
+            var table = new Table({colWidths: [12, 45], wordWrap:true});
+
+            table.push(
+                [{colSpan:2, hAlign:'center', content: "Movie Info"}],
+                { "Title": title },
+                { "Year": year },
+                { "Runtime": runtime },
+                { "Rated": rated },
+                { "Genre": genre},
+                { "Country": country },
+                { "Language": language },
+                { "Director": director },
+                { "Actors": actors },
+                { "Plot": plot},
+                { "IMDB": IMDBrating },
+                { "Rotten": rottenTomatoesRating },
+                { "Metacritic": metacriticRating },
+                { "Awards": awards}
+            );
+
+        console.log(table.toString());
+
+
+
+
+
+
         })
         .catch(function (error) {
             console.log(error);
