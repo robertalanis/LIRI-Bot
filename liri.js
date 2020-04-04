@@ -127,18 +127,31 @@ function spotifySearch() {
         console.log("----------------------------------------------------------");
         */
 
-        var table = new Table({wordWrap:true});
+        var table = new Table({colWidths: [12, 30], wordWrap:true});
 
             table.push(
                 [{colSpan:2, hAlign:'center', content: "Song Info"}],
                 { "Song": song },
                 { "Artist": artists },
                 { "Album": album },
-                { "Released": date },
-                { "Preview": previewURL}
+                { "Released": date }
+                //{ "Preview": previewURL}
             );
 
         console.log(table.toString());
+
+        if (previewURL != null) {
+            var previewLink = new Table({wordWrap:true});
+            previewLink.push(
+                    [{hAlign:'center', content:"Check out this preview!"}],
+                    [{content:previewURL}]
+            );
+            console.log(previewLink.toString());
+        }
+
+
+
+
 
 
     });
@@ -146,13 +159,13 @@ function spotifySearch() {
 
 function movieSearch() {
     // Default Movie
-    console.log(userInput);
+    //console.log(userInput);
     if (userInput === "") {
         var movie = "mr+nobody";
     } else {
         var movie = userInput;
     }
-    console.log(userInput);
+    //console.log(userInput);
 
     //var movie = userInput;
 
@@ -214,7 +227,7 @@ function movieSearch() {
             console.log("----------------------------------------------------------");
             */
 
-            var table = new Table({colWidths: [12, 45], wordWrap:true});
+            var table = new Table({colWidths: [17, 45], wordWrap:true});
 
             table.push(
                 [{colSpan:2, hAlign:'center', content: "Movie Info"}],
@@ -229,7 +242,7 @@ function movieSearch() {
                 { "Actors": actors },
                 { "Plot": plot},
                 { "IMDB": IMDBrating },
-                { "Rotten": rottenTomatoesRating },
+                { "Rotten Tomatoes": rottenTomatoesRating },
                 { "Metacritic": metacriticRating },
                 { "Awards": awards}
             );
