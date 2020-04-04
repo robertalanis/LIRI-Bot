@@ -63,15 +63,24 @@ function concertSearch() {
 
             table.push(
                 [{colSpan:2, hAlign:'center', content: artist + "'s next show:"}],
-                { Date: date },
-                { Venue: venue },
-                { Location: city + ", " + country }
+                { "Date": date },
+                { "Venue": venue },
+                { "Location": city + ", " + country }
             );
 
             console.log(table.toString());
         })
         .catch(function (error) {
-            console.log(error);
+            //console.log(error);
+
+            var table = new Table();
+
+            table.push(
+                [{hAlign:'center', content: "SORRY! \nThere are no scheduled shows for this artist. \nTry another search."}]
+            );
+
+            console.log(table.toString());
+
         });
 }
 
@@ -122,11 +131,11 @@ function spotifySearch() {
 
             table.push(
                 [{colSpan:2, hAlign:'center', content: "Song Info"}],
-                { Song: song },
-                { Artist: artists },
-                { Album: album },
-                { Released: date },
-                { Preview: previewURL}
+                { "Song": song },
+                { "Artist": artists },
+                { "Album": album },
+                { "Released": date },
+                { "Preview": previewURL}
             );
 
         console.log(table.toString());
@@ -184,6 +193,7 @@ function movieSearch() {
             //var metacriticRating = response.data.Ratings[2].Value;
             var awards = response.data.Awards;
 
+            /*
             //--------------------------- OUTPUT MESSAGE ---------------------------//
             console.log("----------------------------------------------------------");
             console.log("Here is some information for that movie:");
@@ -202,7 +212,7 @@ function movieSearch() {
             console.log("Metacritic Rating: " + metacriticRating);
             console.log("Awards: " + awards);
             console.log("----------------------------------------------------------");
-
+            */
 
             var table = new Table({colWidths: [12, 45], wordWrap:true});
 
@@ -225,11 +235,6 @@ function movieSearch() {
             );
 
         console.log(table.toString());
-
-
-
-
-
 
         })
         .catch(function (error) {
