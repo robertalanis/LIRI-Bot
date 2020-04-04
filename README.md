@@ -12,7 +12,11 @@ LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for mov
 
 ### Example
 
-![Movie Search Gif](./movie.gif)
+##### Spotify Search
+![Spotify Search Gif](./assets/spotify.gif)
+
+##### OMDB Movie Search
+![Movie Search Gif](./assets/movie.gif)
 
 ### Technologies Utilized
 
