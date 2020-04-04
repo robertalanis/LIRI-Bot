@@ -22,6 +22,7 @@ LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for mov
 * Spotify API
 * OMDB API
 * Axios
+* CLI-Table3
 
 ### Deployment
 1. Clone repo
