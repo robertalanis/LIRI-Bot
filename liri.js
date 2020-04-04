@@ -106,6 +106,7 @@ function spotifySearch() {
         );
         var previewURL = data.tracks.items[0].preview_url;
 
+        /*
         //--------------------------- OUTPUT MESSAGE ---------------------------//
         console.log("----------------------------------------------------------");
         console.log("Here's some info on that song:");
@@ -115,6 +116,22 @@ function spotifySearch() {
         console.log("Release date : " + date);
         console.log("Preview : " + previewURL);
         console.log("----------------------------------------------------------");
+        */
+
+        var table = new Table({wordWrap:true});
+
+            table.push(
+                [{colSpan:2, hAlign:'center', content: "Song Info"}],
+                { Song: song },
+                { Artist: artists },
+                { Album: album },
+                { Released: date },
+                { Preview: previewURL}
+            );
+
+        console.log(table.toString());
+
+
     });
 }
 
