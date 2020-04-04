@@ -10,9 +10,22 @@ LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for mov
    * `movie-this`
    * `do-what-it-says`
 
+### Example
+
+![Movie Search Gif](./movie.gif)
+
+### Technologies Utilized
+
+* NodeJS
+* JavaScript
+* Bands In Town API
+* Spotify API
+* OMDB API
+* Axios
+
 ### Deployment
 1. Clone repo
 1. Run npm install
 1. At command prompt run node liri.js and pass in one of the four commands followed by a search.
 
-![Movie Search Gif](./movie.gif)
+
