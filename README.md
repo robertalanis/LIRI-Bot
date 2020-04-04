@@ -4,4 +4,4 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
 LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for movies.
 
-![Movie Search Gif](./movie.gif)
+![Movie Search Gif](./movie.gif =100x)
